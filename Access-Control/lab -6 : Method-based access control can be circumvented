@@ -1,0 +1,37 @@
+# Method-Based Access Control Can Be Circumvented
+
+## Vulnerability Type
+Broken Access Control
+
+## Difficulty
+Apprentice
+
+## Platform
+PortSwigger Web Security Academy
+
+## Goal
+Solve the lab by logging in with the credentials `wiener:peter` and exploiting flawed access controls to promote yourself to administrator.
+
+## Root Cause
+The application enforced access controls based on the HTTP request method. Certain administrative actions were restricted for one method but allowed using another HTTP method.
+
+## Exploitation Steps
+1. Browse the application
+2. Log in using the provided user credentials
+3. Observe the administrative functionality
+4. Intercept the request using Burp Suite
+5. Modify the HTTP method used in the request
+6. Forward the modified request
+7. Successfully promote the user account to administrator
+
+## Impact
+An attacker can bypass access control restrictions and gain unauthorized administrative privileges.
+
+## Prevention
+- Enforce authorization checks independently of HTTP methods
+- Validate user permissions on every request
+- Restrict sensitive actions server-side
+- Implement proper role-based access control
+
+## What I Learned
+This lab helped me understand how inconsistent authorization checks across different HTTP methods can lead to privilege escalation vulnerabilities.
