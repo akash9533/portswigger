@@ -1,0 +1,26 @@
+Solve the lab by accessing the admin panel and deleting the user "carlos".
+
+## Root Cause
+The application identified administrators using a user-controlled and forgeable cookie value instead of enforcing proper server-side authorization checks.
+
+## Exploitation Steps
+1. Browse the application
+2. Log in with normal user credentials
+3. Intercept the request using Burp Suite
+4. Identify the forgeable admin cookie parameter
+5. Modify the cookie value to `true`
+6. Reload the page
+7. Access the admin panel
+8. Delete the user "carlos"
+
+## Impact
+An attacker can manipulate the request parameter to gain unauthorized administrative access and perform privileged actions.
+
+## Prevention
+- Enforce server-side authorization checks
+- Avoid trusting client-controlled parameters
+- Validate user roles securely on the server
+- Use secure session management
+
+## What I Learned
+This lab helped me understand how trusting client-controlled parameters can lead to privilege escalation and unauthorized administrative access.
