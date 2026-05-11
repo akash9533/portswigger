@@ -1,0 +1,40 @@
+# User ID Controlled by Request Parameter with Unpredictable User IDs
+
+## Vulnerability Type
+Broken Access Control
+
+## Difficulty
+APPRENTICE
+
+## Platform
+PortSwigger Web Security Academy
+
+## Goal
+To solve the lab, obtain the API key for the user "carlos" and submit it as the solution.
+
+## Root Cause
+The application used unpredictable user identifiers but failed to enforce proper authorization checks. Once an attacker discovered another user's identifier, they could access unauthorized account data.
+
+## Exploitation Steps
+1. Browse the application
+2. Log in using normal user credentials
+3. View a blog post and navigate to another user's profile
+4. Intercept the user profile request using Burp Suite
+5. Capture the victim user's unpredictable identifier
+6. Navigate to the "My Account" functionality
+7. Replace your user identifier with the captured victim identifier
+8. Forward the modified request
+9. Access the victim user's account information
+10. Retrieve and submit the API key
+
+## Impact
+An attacker can gain unauthorized access to another user's sensitive account information.
+
+## Prevention
+- Enforce server-side authorization checks
+- Validate resource ownership
+- Do not rely solely on unpredictable identifiers for security
+- Implement proper access control mechanisms
+
+## What I Learned
+This lab helped me understand that unpredictable identifiers alone do not provide security if proper authorization checks are missing.
