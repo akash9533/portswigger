@@ -1,0 +1,38 @@
+# User Role Can Be Modified in User Profile
+
+## Vulnerability Type
+Broken Access Control
+
+## Difficulty
+Apprentice
+
+## Platform
+PortSwigger Web Security Academy
+
+## Goal
+Solve the lab by accessing the admin panel and deleting the user "carlos".
+
+## Root Cause
+The application trusted user-controlled JSON input and failed to enforce proper server-side authorization checks. Administrative privileges were determined using the `roleid` parameter, which could be modified by the user.
+
+## Exploitation Steps
+1. Browse the application
+2. Log in with normal user credentials
+3. Intercept the profile update request using Burp Suite
+4. Identify the JSON request body
+5. Add or modify the parameter `"roleid": 2`
+6. Forward the modified request
+7. Access the `/admin` panel
+8. Delete the user "carlos"
+
+## Impact
+An attacker can escalate privileges by modifying user-controlled parameters and gain unauthorized administrative access.
+
+## Prevention
+- Enforce authorization checks on the server side
+- Do not trust client-controlled input
+- Validate role assignments securely
+- Restrict sensitive parameters from user modification
+
+## What I Learned
+This lab helped me understand how insecure handling of user-controlled JSON parameters can lead to privilege escalation and unauthorized administrative access.
