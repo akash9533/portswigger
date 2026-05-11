@@ -1,0 +1,39 @@
+# User ID Controlled by Request Parameter
+
+## Vulnerability Type
+Broken Access Control
+
+## Difficulty
+Practitioner
+
+## Platform
+PortSwigger Web Security Academy
+
+## Goal
+To solve the lab, obtain the API key for the user "carlos" and submit it as the solution.
+
+## Root Cause
+The application contained a horizontal privilege escalation vulnerability by trusting a user-controlled identifier in the request parameter without validating ownership.
+
+## Exploitation Steps
+1. Browse the application
+2. Log in using normal user credentials
+3. Intercept the "My Account" request using Burp Suite
+4. Identify the user-controlled ID parameter
+5. Modify the user ID to another user's identifier
+6. Forward the modified request
+7. Access the victim user's account information
+8. Retrieve the victim's API key
+9. Submit the API key to solve the lab
+
+## Impact
+An attacker can access sensitive information belonging to other users by modifying request parameters.
+
+## Prevention
+- Enforce server-side authorization checks
+- Validate resource ownership
+- Avoid trusting user-controlled identifiers
+- Implement proper access control mechanisms
+
+## What I Learned
+This lab helped me understand how insecure handling of user-controlled identifiers can lead to horizontal privilege escalation vulnerabilities.
