@@ -1,0 +1,35 @@
+# Unprotected Admin Functionality with Unpredictable URL
+
+## Vulnerability Type
+Broken Access Control
+
+## Difficulty
+Apprentice
+
+## Platform
+PortSwigger Web Security Academy
+
+## Goal
+Solve the lab by accessing the admin panel and deleting the user "carlos".
+
+## Root Cause
+The application exposed an administrative panel without proper authorization checks. Although the admin URL was unpredictable, its location was disclosed within the application's source code.
+
+## Exploitation Steps
+1. Browse the application
+2. View the page source code
+3. Identify the exposed admin URL inside JavaScript
+4. Access the admin panel directly
+5. Delete the user "carlos"
+
+## Impact
+An attacker can gain unauthorized access to administrative functionality and perform privileged actions.
+
+## Prevention
+- Enforce server-side authorization checks
+- Restrict access to admin endpoints
+- Implement role-based access control
+- Avoid exposing sensitive endpoints in client-side code
+
+## What I Learned
+This lab helped me understand how hidden administrative functionality can still become accessible if sensitive endpoints are exposed in client-side source code.
