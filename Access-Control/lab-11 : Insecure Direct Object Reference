@@ -1,0 +1,39 @@
+# Insecure Direct Object References
+
+## Vulnerability Type
+Broken Access Control (IDOR)
+
+## Difficulty
+Apprentice
+
+## Platform
+[PortSwigger Web Security Academy](https://portswigger.net/web-security?utm_source=chatgpt.com)
+
+## Goal
+Find Carlos's password from the exposed chat transcript and log in to his account.
+
+## Root Cause
+The application stores chat transcripts on the server using predictable file names like `1.txt`, `2.txt`, etc.  
+There are no proper authorization checks before serving these files, which allows users to access other users' transcripts by changing the file name in the request.
+
+## Exploitation Steps
+1. Open the application and use the live chat feature.
+2. Send any random message in the chat.
+3. Download or open the chat transcript.
+4. Intercept the transcript request in Burp Suite.
+5. Notice the file name in the request, such as `2.txt`.
+6. Change the file name to another value like `1.txt`.
+7. Forward the request.
+8. The response contains another user's chat transcript.
+9. Inside the transcript, find Carlos's login credentials.
+10. Use those credentials to log in as Carlos and solve the lab.
+
+## Impact
+An attacker can access sensitive information belonging to other users, including passwords and private conversations, which can lead to account takeover.
+
+## What I Learned
+This lab taught me that:
+- Predictable file names can create IDOR vulnerabilities.
+- Applications should always verify whether a user is authorized to access a file.
+- Sensitive data such as chat logs should never be publicly accessible.
+- Information disclosure bugs can easily lead to account compromise.
