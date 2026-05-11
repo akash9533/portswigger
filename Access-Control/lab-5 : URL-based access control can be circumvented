@@ -1,0 +1,37 @@
+# URL-Based Access Control Can Be Circumvented
+
+## Vulnerability Type
+Broken Access Control
+
+## Difficulty
+Apprentice
+
+## Platform
+PortSwigger Web Security Academy
+
+## Goal
+Solve the lab by accessing the admin panel and deleting the user "carlos".
+
+## Root Cause
+The application relied on front-end restrictions to block access to the `/admin` endpoint. However, the back-end framework trusted the `X-Original-URL` header, allowing attackers to bypass the access control mechanism.
+
+## Exploitation Steps
+1. Browse the application
+2. Intercept a request using Burp Suite
+3. Modify the request header:
+4. Add the parameter:X-Original-URL: /admin/deleteUser (because this website allows x-header)
+5. Forward the modified request
+6. Access the administrative functionality
+7. Delete the user "carlos"
+
+## Impact
+An attacker can bypass front-end access restrictions and gain unauthorized access to administrative functionality.
+
+## Prevention
+- Enforce authorization checks on the back end
+- Do not trust rewrite-related headers from users
+- Validate all privileged routes server-side
+- Restrict internal headers at reverse proxies
+
+## What I Learned
+This lab helped me understand how relying only on front-end restrictions can lead to access control bypass vulnerabilities.
