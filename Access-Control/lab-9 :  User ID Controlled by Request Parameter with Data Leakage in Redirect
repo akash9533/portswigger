@@ -1,0 +1,40 @@
+# User ID Controlled by Request Parameter with Data Leakage in Redirect
+
+## Vulnerability Type
+Broken Access Control (IDOR)
+
+## Difficulty
+Apprentice
+
+## Platform
+[PortSwigger Web Security Academy](https://portswigger.net/web-security?utm_source=chatgpt.com)
+
+## Goal
+To solve the lab, obtain the API key for the user `carlos` and submit it as the solution.
+
+## Root Cause
+This lab contains an access control vulnerability where sensitive information is leaked in the body of a redirect response.
+
+The application fails to properly validate whether the authenticated user is authorized to access the requested account information. By modifying the user identifier parameter, an attacker can access another user's sensitive data.
+
+## Exploitation Steps
+1. Browse the application.
+2. Log in using the provided user credentials.
+3. Navigate to the "My Account" page.
+4. Intercept the account request using Burp Suite.
+5. Identify the user ID parameter in the request.
+6. Modify the parameter value to `carlos`.
+7. Forward the modified request.
+8. Observe that the response leaks Carlos's account information in the redirect response body.
+9. Retrieve Carlos's API key.
+10. Submit the API key to solve the lab.
+
+## Impact
+An attacker can gain unauthorized access to another user's sensitive account information, leading to information disclosure and potential account compromise.
+
+## What I Learned
+This lab helped me understand that:
+- Unpredictable identifiers alone do not provide security.
+- Proper authorization checks must always be enforced server-side.
+- Sensitive information should never be included in redirect responses.
+- IDOR vulnerabilities can still exist even when applications attempt to obscure identifiers.
