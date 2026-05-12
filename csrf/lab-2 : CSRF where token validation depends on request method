@@ -1,0 +1,31 @@
+# CSRF where token validation depends on request method
+
+## Vulnerability Type
+CSRF	
+
+## Difficulty
+appara
+
+## Platform
+PortSwigger Web Security Academy
+
+## Goal
+To solve the lab, craft some HTML that uses a CSRF attack to change the viewer's email address and upload it to your exploit server
+
+## Root Cause
+This lab's email change functionality is vulnerable to CSRF. It attempts to block CSRF attacks, but only applies defenses to certain types of requests.
+
+## Exploitation Steps
+1. Browse the application  
+2. login with provided credentials  
+3. intercept email change request  
+4. in repeater tab observe CSRF token (if you change it, error will come)  
+5. change the request method  
+6. go to engagement tools and generate CSRF PoC  
+7. go to exploit server then deliver to victim  
+
+## Impact
+An attacker can change user email address  
+
+## What I Learned
+in this lab i learned is how to change victim email  
