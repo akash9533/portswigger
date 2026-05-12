@@ -1,0 +1,32 @@
+# CSRF where token is tied to non-session cookie
+
+## Vulnerability Type
+CSRF	
+
+## Difficulty
+practitioner
+
+## Platform
+PortSwigger Web Security Academy
+
+## Goal
+This lab's email change functionality is vulnerable to CSRF. It uses tokens to try to prevent CSRF attacks, but they aren't integrated into the site's session handling system
+
+## Root Cause
+This lab's email change functionality is vulnerable to CSRF because the CSRF token is tied to a non-session cookie that can be controlled by the attacker.
+
+## Exploitation Steps
+1. Browse the application  
+2. login with provided credentials  
+3. intercept email change request  
+4. go to another account in private tab and note CSRF token and csrfKey cookie  
+5. generate CSRF PoC and remove auto-submit  
+6. inject csrfKey cookie into victim session  
+7. submit request using attacker-controlled CSRF token and cookie pair  
+8. exploit successful  
+
+## Impact
+An attacker can change user email address  
+
+## What I Learned
+in this lab i learned how CSRF protection can be bypassed when the token is tied to a non-session cookie  
