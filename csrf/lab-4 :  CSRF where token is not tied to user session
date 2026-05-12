@@ -1,0 +1,32 @@
+# CSRF where token is not tied to user session
+
+## Vulnerability Type
+CSRF	
+
+## Difficulty
+practitioner
+
+## Platform
+PortSwigger Web Security Academy
+
+## Goal
+This lab's email change functionality is vulnerable to CSRF. It uses tokens to try to prevent CSRF attacks, but they aren't integrated into the site's session handling system
+
+## Root Cause
+This lab's email change functionality is vulnerable to CSRF because the CSRF token is not tied to the user session, allowing token reuse across sessions.
+
+## Exploitation Steps
+1. Browse the application  
+2. login with provided credentials  
+3. intercept email change request  
+4. in repeater tab observe CSRF token  
+5. login to another account in private tab and copy CSRF token  
+6. swap/reuse the token in the original session request  
+7. go to engagement tools and generate CSRF PoC  
+8. go to exploit server then deliver to victim  
+
+## Impact
+An attacker can change user email address  
+
+## What I Learned
+in this lab i learned is how to change victim email  
