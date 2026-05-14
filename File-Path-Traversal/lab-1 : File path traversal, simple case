@@ -1,0 +1,23 @@
+# Lab: File path traversal, simple case
+
+## Vulnerability Type
+Broken Access Control
+
+## Difficulty
+apprentice
+
+## Platform
+PortSwigger Web Security Academy
+
+## Goal
+To solve the lab, retrieve the contents of the /etc/passwd file.
+
+## Root Cause
+This lab contains a path traversal vulnerability in the display of product images. The application does not properly validate user-controlled file paths.
+
+## Exploitation Steps
+1. Browse the application and select any product  
+2. intercept the request in Burp Suite  
+3. identify parameter that fetches image from server, for example:
+```text
+image=abc.png
