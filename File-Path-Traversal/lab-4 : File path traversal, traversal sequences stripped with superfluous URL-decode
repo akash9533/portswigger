@@ -1,0 +1,44 @@
+#Lab:File path traversal, traversal sequences stripped with superfluous URL-decode
+
+## Vulnerability Type
+path traversal
+
+## Difficulty
+practitioner
+
+## Platform
+PortSwigger Web Security Academy
+
+## Goal
+To solve the lab, retrieve the contents of the /etc/passwd file.
+
+## Root Cause
+ This lab contains a path traversal vulnerability in the display of product images.
+
+The application strips path traversal sequences from the user-supplied filename before using it. 
+
+
+
+## Exploitation Steps
+1. Browse the application select product
+2. intercept that request in burp
+3. find fields that fetch image from server ex : image=abc.png
+4. inject payload "../../../etc/passwd" and observe response
+5. traversal sequences are blocked
+6. try absolute path bypass using "/etc/passwd"
+7. use "//" because filter only look for single "/" slash it bypass that filters the "....//etc/passwd "  try this until to get access
+8.use url encode if it doesnt work use double url encode it bypases  ehe answer : ..%252f..%252f..%252fetc/passwd " 
+7. observe server response and sensitive file disclosure
+8. exploit successful
+
+## Impact
+An attacker may be able to access sensitive files from the server including system files, configuration files, and internal application data.
+
+## Prevention
+- Validate and sanitize user input
+- Use allowlists for file access
+- Restrict file access permissions
+- Avoid directly using user input in file system operations
+
+## What I Learned
+This lab helped me understand how applications may block traversal sequences but still remain vulnerable through absolute path bypass techniques.
