@@ -1,0 +1,41 @@
+#Lab: File path traversal, traversal sequences stripped non-recursively
+
+## Vulnerability Type
+Broken Access Control
+
+## Difficulty
+practitioner
+
+## Platform
+PortSwigger Web Security Academy
+
+## Goal
+To solve the lab, retrieve the contents of the /etc/passwd file.
+
+## Root Cause
+This lab contains a path traversal vulnerability in the display of product images.
+
+The application strips path traversal sequences from the user-supplied filename before using it.
+
+## Exploitation Steps
+1. Browse the application select product
+2. intercept that request in burp
+3. find fields that fetch image from server ex : image=abc.png
+4. inject payload "../../../etc/passwd" and observe response
+5. traversal sequences are blocked
+6. observe application removes only single traversal patterns
+7. use bypass payload "....//....//....//etc/passwd"
+8. observe server response and sensitive file disclosure
+9. exploit successful
+
+## Impact
+An attacker may be able to access sensitive files from the server including system files, configuration files, and internal application data.
+
+## Prevention
+- Validate and sanitize user input
+- Use allowlists for file access
+- Restrict file access permissions
+- Avoid directly using user input in file system operations
+
+## What I Learned
+This lab helped me understand how applications may attempt to filter traversal sequences but still remain vulnerable due to non-recursive filtering weaknesses.
